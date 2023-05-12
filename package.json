@@ -1,0 +1,104 @@
+{
+  "name": "react-import-sorter",
+  "displayName": "React Import Sorter",
+  "description": "React Import Sorter is a powerful and user-friendly VS Code extension that helps you keep your imports in React projects organized and easy to maintain.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.78.0"
+  },
+  "categories": [
+    "Formatters"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "My Extension",
+      "properties": {
+        "reactImportSorter.sortingOrder": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "REACT",
+              "MODULES",
+              "PATH_MODULES",
+              "PATH_IMPORTS"
+            ]
+          },
+          "default": [],
+          "description": "An array of strings that defines the order of imports to sort by."
+        },
+        "reactImportSorter.separateByImportTypes": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to separate different types of imports with a new line."
+        },
+        "reactImportSorter.separateMultilineImports": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to add a new line before multiline imports."
+        },
+        "reactImportSorter.sortDestructuredModules": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to sort destructured imports. i.e. { c, a, d } => { a, c, d }"
+        },
+        "reactImportSorter.sortBy": {
+          "type": "string",
+          "enum": [
+            "+size",
+            "-size",
+            "a-z",
+            "z-a"
+          ],
+          "default": "+size",
+          "description": "The sorting order for the imports."
+        },
+        "reactImportSorter.sortDestructuredModulesBy": {
+          "type": "string",
+          "enum": [
+            "+size",
+            "-size",
+            "a-z",
+            "z-a"
+          ],
+          "default": "a-z",
+          "description": "The sorting order for the destructured imports only applicable when sortDestructuredModules is on."
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "react-import-sorter.sortReactImports",
+        "title": "Sort React Imports"
+      }
+    ]
+  },
+  "keywords": [
+    "react",
+    "import",
+    "sorter"
+  ],
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.78.0",
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "@typescript-eslint/eslint-plugin": "^5.59.1",
+    "@typescript-eslint/parser": "^5.59.1",
+    "eslint": "^8.39.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
+    "typescript": "^5.0.4",
+    "@vscode/test-electron": "^2.3.0"
+  }
+}
