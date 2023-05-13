@@ -210,22 +210,20 @@ export function activate(context: vscode.ExtensionContext) {
       );
 
       // Generate package type priorities based on user configurations
-      const packageTypePriorities: Record<string, number> = {};
+      const packageTypeWiseImports: Record<string, ITransformedImport[]> = {};
       let priorityCount = 1;
       for (const sortOrder of userConfigSortOrders) {
-        packageTypePriorities[sortOrder] = priorityCount;
+        packageTypeWiseImports[sortOrder] ??= [];
         priorityCount++;
       }
       for (const sortOrder of Object.values(PackageType)) {
-        packageTypePriorities[sortOrder] ??= priorityCount;
+        packageTypeWiseImports[sortOrder] ??= [];
         priorityCount++;
       }
 
       // Group based on packageType and sort modular imports if user has enabled it
-      const packageTypeWiseImports: Record<string, ITransformedImport[]> = {};
       for (const transformedImport of transformedImports) {
         const { packageType } = transformedImport;
-        packageTypeWiseImports[packageType] ??= [];
         if (userConfigSortDestructuredModules) {
           switch (userConfigSortDestructuredModulesBy) {
             case SortByConfiguration.ascending:
@@ -258,6 +256,10 @@ export function activate(context: vscode.ExtensionContext) {
         }
         packageTypeWiseImports[packageType].push(transformedImport);
       }
+      console.log(
+        '😊 -> activate -> packageTypeWiseImports:',
+        packageTypeWiseImports,
+      );
 
       // Sort internally grouped imports per packageType.
       for (const packageType of Object.keys(packageTypeWiseImports)) {
@@ -287,6 +289,10 @@ export function activate(context: vscode.ExtensionContext) {
           regenerateImportString(importObject);
         }
       }
+      console.log(
+        '😊 -> activate -> packageTypeWiseImports: after internal',
+        packageTypeWiseImports,
+      );
 
       // Perform the size based sort as we now have a mappedString
       for (const packageType of Object.keys(packageTypeWiseImports)) {
@@ -313,6 +319,10 @@ export function activate(context: vscode.ExtensionContext) {
             break;
         }
       }
+      console.log(
+        '😊 -> activate -> packageTypeWiseImports: after external sort',
+        packageTypeWiseImports,
+      );
 
       // Generate the final text snipped which we will paste into VSCode on current selection
       const replacementText = Object.values(packageTypeWiseImports)
