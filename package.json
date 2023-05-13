@@ -4,6 +4,10 @@
   "description": "React Import Sorter is a powerful and user-friendly VS Code extension that helps you keep your imports in React projects organized and easy to maintain.",
   "version": "0.0.1",
   "publisher": "MrOnline",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mr0nline/React-Import-Sorter"
+  },
   "license": "SEE LICENSE IN <LICENSE>",
   "engines": {
     "vscode": "^1.78.0"

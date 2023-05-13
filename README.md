@@ -83,7 +83,7 @@ The extension comes with several configuration options that can be adjusted to f
 
 ### Contributing
 
-Contributions to this project are always welcome. If you have any issues or feature requests, please submit them through the GitHub repository's issue tracker.
+Contributions to this project are always welcome. If you have any issues or feature requests, please submit them through the GitHub repository's [issue tracker](https://github.com/Mr0nline/React-Import-Sorter/issues).
 
 To contribute to the codebase, follow these steps:
 
@@ -102,6 +102,6 @@ This project is licensed under the terms of the MIT license. See the `LICENSE` f
 
 ### Contact
 
-If you have any questions or concerns, feel free to contact the author of this extension, [MrOnline](github.com/Mr0nline), through the [GitHub repository](https://github.com/Mr0nline/React-Import-Sorter) or by email at mronlinesworld@gmail.com.
+If you have any questions or concerns, feel free to contact the author of this extension, [MrOnline](https://github.com/Mr0nline), through the [GitHub repository](https://github.com/Mr0nline/React-Import-Sorter) or by email at mronlinesworld@gmail.com.
 
 > Thank you for using React Import Sorter!
