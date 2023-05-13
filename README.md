@@ -1,6 +1,7 @@
 # React Import Sorter
 
 React Import Sorter is a powerful and user-friendly VS Code extension that helps you keep your imports in React projects organized and easy to maintain.
+![Quick Demo](https://github.com/Mr0nline/React-Import-Sorter/blob/main/react-import-sorter.gif?raw=true)
 
 ## Installation
 
