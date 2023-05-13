@@ -8,7 +8,7 @@
     "type": "git",
     "url": "https://github.com/Mr0nline/React-Import-Sorter"
   },
-  "license": "SEE LICENSE IN <LICENSE>",
+  "license": "SEE LICENSE IN LICENSE",
   "engines": {
     "vscode": "^1.78.0"
   },
