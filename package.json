@@ -3,6 +3,8 @@
   "displayName": "React Import Sorter",
   "description": "React Import Sorter is a powerful and user-friendly VS Code extension that helps you keep your imports in React projects organized and easy to maintain.",
   "version": "0.0.1",
+  "publisher": "MrOnline",
+  "license": "SEE LICENSE IN <LICENSE>",
   "engines": {
     "vscode": "^1.78.0"
   },
@@ -65,6 +67,14 @@
           ],
           "default": "a-z",
           "description": "The sorting order for the destructured imports only applicable when sortDestructuredModules is on."
+        },
+        "reactImportSorter.pathImportPrefixes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "An array of strings that defines the custom made alias paths (Generally via tsconfig.json's paths). Should be like ['@components', '@pages', 'common'] etc. By default all the imports with '/' will be considered as path imports even if it's from node_modules like @mui/material"
         }
       }
     },

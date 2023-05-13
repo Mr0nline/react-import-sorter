@@ -1,71 +1,107 @@
-# react-import-sorter README
+# React Import Sorter
 
-This is the README for your extension "react-import-sorter". After writing up a brief description, we recommend including the following sections.
+React Import Sorter is a powerful and user-friendly VS Code extension that helps you keep your imports in React projects organized and easy to maintain.
+
+## Installation
+
+You can install the React Import Sorter extension by searching for it in the VS Code extensions marketplace, or by downloading it from the [extension's page](https://marketplace.visualstudio.com/items?itemName=MrOnline.react-import-sorter).
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- Sorts imports in React projects according to configurable settings
+- Allows you to define custom import sorting orders
+- Supports multiline sorting
+- Supports sorting by import size or alphabetically
+- Separates different types of imports with a new line
+- Adds a new line before multiline imports
+- Sorts destructured imports
 
-For example if there is an image subfolder under your extension project workspace:
+## Configuration
 
-\!\[feature X\]\(images/feature-x.png\)
+React Import Sorter comes with several configuration options that allow you to customize how your imports are sorted. These options can be accessed via the VS Code settings menu under the "React Import Sorter" category.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+> It's highly recommended to use formatters like Prettier to keep consistent formatting!
 
-## Requirements
+### Sorting Order
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+The `reactImportSorter.sortingOrder` option allows you to define the order in which your imports are sorted. This is an array of strings that can include the following values:
 
-## Extension Settings
+- `REACT` - Sorts all React imports first
+- `MODULES` - Sorts all node module imports next
+- `PATH_MODULES` - Sorts path alias imports next
+- `PATH_IMPORTS` - Sorts all other path imports last
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+### Separation of Import Types
 
-For example:
+The `reactImportSorter.separateByImportTypes` option determines whether different types of imports are separated with a new line.
 
-This extension contributes the following settings:
+### Separation of Multiline Imports
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+The `reactImportSorter.separateMultilineImports` option determines whether a new line is added before multiline imports.
 
-## Known Issues
+### Sorting of Destructured Modules
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+The `reactImportSorter.sortDestructuredModules` option determines whether destructured imports are sorted. For example, `{ c, a, d }` can be sorted as `{ a, c, d }`.
 
-## Release Notes
+### Sorting By
 
-Users appreciate release notes as you update your extension.
+The `reactImportSorter.sortBy` option determines the order in which your imports are sorted. This option accepts four possible values:
 
-### 1.0.0
+- `+size` - Sorts imports by size in ascending order
+- `-size` - Sorts imports by size in descending order
+- `a-z` - Sorts imports alphabetically in ascending order
+- `z-a` - Sorts imports alphabetically in descending order
 
-Initial release of ...
+### Sorting of Destructured Modules By
 
-### 1.0.1
+The `reactImportSorter.sortDestructuredModulesBy` option determines the order in which destructured imports are sorted. This option accepts four possible values:
 
-Fixed issue #.
+- `+size` - Sorts destructured imports by size in ascending order
+- `-size` - Sorts destructured imports by size in descending order
+- `a-z` - Sorts destructured imports alphabetically in ascending order
+- `z-a` - Sorts destructured imports alphabetically in descending order
 
-### 1.1.0
+### Path Import Prefixes
 
-Added features X, Y, and Z.
+The `reactImportSorter.pathImportPrefixes` option allows you to define custom path import prefixes that are used to identify path imports. By default, all imports with `/` are considered as path imports, even if they are from node_modules like `@mui/material`.
 
----
+## Usage
 
-## Following extension guidelines
+To sort imports in a file, Select all import statements, open the file and run the "Sort React Imports" command. This can be done by pressing `Ctrl+Shift+P` (Windows) or `Cmd+Shift+P` (Mac) to open the VS Code command palette and searching for the "Sort React Imports" command.
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
+### Configuration options
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
+The extension comes with several configuration options that can be adjusted to fit your preferences. These options can be accessed by going to File > Preferences > Settings and searching for "React Import Sorter". Here are some of the most useful options:
 
-## Working with Markdown
+- `reactImportSorter.sortingOrder`: An array of strings that defines the order of imports to sort by.
+- `reactImportSorter.separateByImportTypes`: Whether to separate different types of imports with a new line.
+- `reactImportSorter.separateMultilineImports`: Whether to add a new line before multiline imports.
+- `reactImportSorter.sortDestructuredModules`: Whether to sort destructured imports.
+- `reactImportSorter.sortBy`: The sorting order for the imports.
+- `reactImportSorter.sortDestructuredModulesBy`: The sorting order for the destructured imports, only applicable when `sortDestructuredModules` is on.
+- `reactImportSorter.pathImportPrefixes`: An array of strings that defines the custom made alias paths (generally via `tsconfig.json`'s `paths`). By default, all the imports with `/` will be considered as path imports, even if they're from `node_modules` like `@mui/material`.
 
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
+### Contributing
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
+Contributions to this project are always welcome. If you have any issues or feature requests, please submit them through the GitHub repository's issue tracker.
 
-## For more information
+To contribute to the codebase, follow these steps:
 
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+1. Fork the repository.
+2. Clone your forked repository to your local machine.
+3. Install the required dependencies using `npm install`.
+4. Make changes to the codebase.
+5. Write tests for your changes.
+6. Run the tests using `npm run test`.
+7. If the tests pass, commit your changes and push them to your forked repository.
+8. Open a pull request to the original repository.
 
-**Enjoy!**
+### License
+
+This project is licensed under the terms of the MIT license. See the `LICENSE` file for more information.
+
+### Contact
+
+If you have any questions or concerns, feel free to contact the author of this extension, [MrOnline](github.com/Mr0nline), through the [GitHub repository](https://github.com/Mr0nline/React-Import-Sorter) or by email at mronlinesworld@gmail.com.
+
+> Thank you for using React Import Sorter!
