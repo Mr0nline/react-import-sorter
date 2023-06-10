@@ -129,13 +129,18 @@ const generateTransformedImport = (
 const regenerateImportString = (transformedImport: ITransformedImport) => {
   const { defaultModule, modules, packagePath, cleanedDefaultModule } =
     transformedImport;
-  transformedImport.mappedString = `import ${
-    cleanedDefaultModule ? `${defaultModule}${modules.length ? ',' : ''} ` : ''
-  }${
-    modules.length
-      ? `{ ${modules.map((value) => value.displayName).join(', ')} } `
-      : ''
-  }from ${packagePath}`;
+
+  const defaultModuleStr = cleanedDefaultModule
+    ? `${defaultModule}${modules.length ? ',' : ''} `
+    : '';
+  const modulesStr = modules.length
+    ? `{ ${modules.map((value) => value.displayName).join(', ')} } `
+    : '';
+  // import "xyz" is plain input because it doesn't contain from keyword!
+  const isPlainImport = !cleanedDefaultModule && !modules.length;
+  const fromStr = !isPlainImport ? 'from ' : '';
+
+  transformedImport.mappedString = `import ${defaultModuleStr}${modulesStr}${fromStr}${packagePath}`;
 };
 
 // This method is called when your extension is activated
@@ -256,10 +261,6 @@ export function activate(context: vscode.ExtensionContext) {
         }
         packageTypeWiseImports[packageType].push(transformedImport);
       }
-      console.log(
-        '😊 -> activate -> packageTypeWiseImports:',
-        packageTypeWiseImports,
-      );
 
       // Sort internally grouped imports per packageType.
       for (const packageType of Object.keys(packageTypeWiseImports)) {
@@ -289,10 +290,6 @@ export function activate(context: vscode.ExtensionContext) {
           regenerateImportString(importObject);
         }
       }
-      console.log(
-        '😊 -> activate -> packageTypeWiseImports: after internal',
-        packageTypeWiseImports,
-      );
 
       // Perform the size based sort as we now have a mappedString
       for (const packageType of Object.keys(packageTypeWiseImports)) {
@@ -319,34 +316,98 @@ export function activate(context: vscode.ExtensionContext) {
             break;
         }
       }
-      console.log(
-        '😊 -> activate -> packageTypeWiseImports: after external sort',
-        packageTypeWiseImports,
-      );
 
       // Generate the final text snipped which we will paste into VSCode on current selection
+      const lineSeparators = userConfigSeparateImportTypes ? '\n\n' : '\n';
+      const packageTypeWiseDirectImports: string[] = [];
       const replacementText = Object.values(packageTypeWiseImports)
         .filter((value) => value.length) // Remove any packageType which hasn't used in selections
-        .map((packageTypeValue) =>
-          packageTypeValue
+        .map((packageTypeValue) => {
+          const directImports: string[] = [];
+          const packageTypeWiseImports = packageTypeValue
             .map(
               (
                 value, // Each value refers to importObject which has now mappedString which we can use to display in VSCode
-              ) =>
-                `${
+              ) => {
+                const lineBreakPrefix =
                   userConfigSeparateMultilineImports &&
                   value.hasMultilineImports
                     ? '\n'
-                    : ''
-                }${value.mappedString}`,
+                    : '';
+                const finalStr = `${lineBreakPrefix}${value.mappedString}`;
+
+                // We want to append direct imports in the end
+                const isDirectImport = !value.mappedString?.includes('from ');
+                if (isDirectImport && finalStr) {
+                  directImports.push(finalStr);
+                  return;
+                }
+
+                return finalStr.trim();
+              },
             )
-            .join('\n'),
-        )
-        .join(userConfigSeparateImportTypes ? '\n\n' : '\n');
+            .filter(Boolean)
+            .join('\n');
+
+          const joinedDirectImports = directImports.join('\n');
+          if (joinedDirectImports) {
+            packageTypeWiseDirectImports.push(joinedDirectImports);
+          }
+
+          return packageTypeWiseImports;
+        })
+        .join(lineSeparators);
+      const directImportsReplacementText =
+        packageTypeWiseDirectImports.join(lineSeparators);
+
+      const textToReplaceInEditor =
+        replacementText +
+        (directImportsReplacementText
+          ? `${lineSeparators}${directImportsReplacementText}`
+          : '');
 
       // Replace the selected text with a custom value from a variable
       editor.edit((builder) => {
-        builder.replace(editor.selection, replacementText);
+        // Sort all selections based on their line numbers!
+        const selections = [...editor.selections].sort(
+          ({ start: { line: selLine1 } }, { start: { line: selLine2 } }) =>
+            selLine1 - selLine2,
+        );
+
+        // Apply whole sorted imports on top selection
+        const topmostSelection = selections[0];
+        builder.replace(topmostSelection, textToReplaceInEditor);
+
+        // Remove the remaining selections
+        const deletedLines: Set<number> = new Set();
+
+        for (let i = 1; i < selections.length; i++) {
+          const selection = selections[i];
+          const isWholeLineSelected =
+            selection.start.character === 0 &&
+            selection.end.character ===
+              editor.document.lineAt(selection.end.line).range.end.character;
+
+          // If whole line is selected, That means the selection would result in blank line after replacement,
+          // If so delete such lines otherwise only delete the selection.
+          if (isWholeLineSelected) {
+            const lineToDelete = selection.start.line;
+            if (!deletedLines.has(lineToDelete)) {
+              deletedLines.add(lineToDelete);
+              builder.delete(
+                new vscode.Range(lineToDelete, 0, lineToDelete + 1, 0),
+              );
+            }
+          } else {
+            builder.delete(selection);
+          }
+        }
+
+        // Move the cursor to the latest replaced selection's end!
+        editor.selection = new vscode.Selection(
+          topmostSelection.end,
+          topmostSelection.end,
+        );
       });
     },
   );
