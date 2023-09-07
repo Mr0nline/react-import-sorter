@@ -1,6 +1,6 @@
 # React Import Sorter
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 React Import Sorter is a powerful and user-friendly VS Code extension that helps you keep your imports in React projects organized and easy to maintain.
@@ -121,6 +121,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tbody>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Mr0nline"><img src="https://avatars.githubusercontent.com/u/57582883?v=4?s=100" width="100px;" alt="Mr.Online"/><br /><sub><b>Mr.Online</b></sub></a><br /><a href="#ideas-Mr0nline" title="Ideas, Planning, & Feedback">🤔</a> <a href="#maintenance-Mr0nline" title="Maintenance">🚧</a> <a href="#question-Mr0nline" title="Answering Questions">💬</a> <a href="#design-Mr0nline" title="Design">🎨</a> <a href="https://github.com/Mr0nline/React-Import-Sorter/issues?q=author%3AMr0nline" title="Bug reports">🐛</a> <a href="https://github.com/Mr0nline/React-Import-Sorter/commits?author=Mr0nline" title="Code">💻</a> <a href="https://github.com/Mr0nline/React-Import-Sorter/commits?author=Mr0nline" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/piyush-vaviya"><img src="https://avatars.githubusercontent.com/u/112646037?v=4?s=100" width="100px;" alt="Piyush Vaviya"/><br /><sub><b>Piyush Vaviya</b></sub></a><br /><a href="https://github.com/Mr0nline/React-Import-Sorter/issues?q=author%3Apiyush-vaviya" title="Bug reports">🐛</a></td>
     </tr>
   </tbody>
   <tfoot>
