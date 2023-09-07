@@ -93,7 +93,8 @@
   "keywords": [
     "react",
     "import",
-    "sorter"
+    "sorter",
+    "modules"
   ],
   "scripts": {
     "vscode:prepublish": "npm run compile",
