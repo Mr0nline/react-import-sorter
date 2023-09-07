@@ -24,8 +24,18 @@
         "code",
         "doc"
       ]
+    },
+    {
+      "login": "piyush-vaviya",
+      "name": "Piyush Vaviya",
+      "avatar_url": "https://avatars.githubusercontent.com/u/112646037?v=4",
+      "profile": "https://github.com/piyush-vaviya",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
-  "linkToUsage": true
+  "linkToUsage": true,
+  "commitType": "docs"
 }
