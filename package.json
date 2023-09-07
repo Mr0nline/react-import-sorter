@@ -20,7 +20,7 @@
   "main": "./out/extension.js",
   "contributes": {
     "configuration": {
-      "title": "My Extension",
+      "title": "React Import Sorter",
       "properties": {
         "reactImportSorter.sortingOrder": {
           "type": "array",
