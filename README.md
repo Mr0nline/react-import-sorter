@@ -1,4 +1,7 @@
 # React Import Sorter
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 React Import Sorter is a powerful and user-friendly VS Code extension that helps you keep your imports in React projects organized and easy to maintain.
 ![Quick Demo](https://github.com/Mr0nline/React-Import-Sorter/blob/main/react-import-sorter.gif?raw=true)
@@ -106,3 +109,34 @@ This project is licensed under the terms of the MIT license. See the `LICENSE` f
 If you have any questions or concerns, feel free to contact the author of this extension, [MrOnline](https://github.com/Mr0nline), through the [GitHub repository](https://github.com/Mr0nline/React-Import-Sorter) or by email at mronlinesworld@gmail.com.
 
 > Thank you for using React Import Sorter!
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Mr0nline"><img src="https://avatars.githubusercontent.com/u/57582883?v=4?s=100" width="100px;" alt="Mr.Online"/><br /><sub><b>Mr.Online</b></sub></a><br /><a href="#ideas-Mr0nline" title="Ideas, Planning, & Feedback">🤔</a> <a href="#maintenance-Mr0nline" title="Maintenance">🚧</a> <a href="#question-Mr0nline" title="Answering Questions">💬</a> <a href="#design-Mr0nline" title="Design">🎨</a> <a href="https://github.com/Mr0nline/React-Import-Sorter/issues?q=author%3AMr0nline" title="Bug reports">🐛</a> <a href="https://github.com/Mr0nline/React-Import-Sorter/commits?author=Mr0nline" title="Code">💻</a> <a href="https://github.com/Mr0nline/React-Import-Sorter/commits?author=Mr0nline" title="Documentation">📖</a></td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td align="center" size="13px" colspan="7">
+        <img src="https://raw.githubusercontent.com/all-contributors/all-contributors-cli/1b8533af435da9854653492b1327a23a4dbd0a10/assets/logo-small.svg">
+          <a href="https://all-contributors.js.org/docs/en/bot/usage">Add your contributions</a>
+        </img>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
